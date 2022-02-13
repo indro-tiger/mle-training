@@ -1,0 +1,4 @@
+## Ignoring pyc and csv file ony
+
+*.pyc
+*.csv
