@@ -16,7 +16,7 @@ The following techniques have been used:
 
 ## To excute the script
 python < scriptname.py >
-## packages need to installl before runn the code 
+## packages need to be install before run the code 
 1. numpy
 2. pandas
 3. matplotlib
