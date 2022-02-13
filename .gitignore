@@ -1,4 +1,4 @@
-## Ignoring pyc and csv file ony
+## Ignoring pyc and csv file only
 
 *.pyc
 *.csv
