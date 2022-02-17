@@ -1,4 +1,4 @@
-## Ignoring .pyc and csv file only; Practicing from vs code 2
+## Ignoring pyc and csv file only.
 
 *.pyc
 *.csv
