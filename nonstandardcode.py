@@ -15,8 +15,7 @@ from sklearn.model_selection import (GridSearchCV, RandomizedSearchCV,
                                      StratifiedShuffleSplit, train_test_split)
 from sklearn.tree import DecisionTreeRegressor
 
-x = 3
-y = 470
+
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml/master/"
 HOUSING_PATH = os.path.join("datasets", "housing")
 HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
