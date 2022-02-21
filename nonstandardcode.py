@@ -1,8 +1,9 @@
+
 import os
 import tarfile
 
-import matplotlib as mpl
-import matplotlib.pyplot as plt
+# import matplotlib as mpl
+# import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.stats import randint
@@ -14,7 +15,6 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import (GridSearchCV, RandomizedSearchCV,
                                      StratifiedShuffleSplit, train_test_split)
 from sklearn.tree import DecisionTreeRegressor
-
 
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml/master/"
 HOUSING_PATH = os.path.join("datasets", "housing")
@@ -30,12 +30,13 @@ def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
     housing_tgz.close()
 
 
-def load_housing_data(housing_path=HOUSING_PATH):
-    csv_path = os.path.join(housing_path, "housing.csv")
+def load_housing_data(housing_path=DOWNLOAD_ROOT):
+    csv_path = housing_path + "datasets/housing/housing.csv"
     return pd.read_csv(csv_path)
 
 
-housing = load_housing_data
+housing = load_housing_data()
+
 
 train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
 
@@ -78,6 +79,7 @@ for set_ in (strat_train_set, strat_test_set):
 housing = strat_train_set.copy()
 housing.plot(kind="scatter", x="longitude", y="latitude")
 housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.1)
+
 corr_matrix = housing.corr()
 corr_matrix["median_house_value"].sort_values(ascending=False)
 housing["rooms_per_household"] = housing["total_rooms"] / housing["households"]
@@ -86,9 +88,11 @@ housing["bedrooms_per_room"] = housing["total_bedrooms"] / \
 housing["population_per_household"] = housing["population"] / \
     housing["households"]
 
-# drop labels for training set
-housing = strat_train_set.drop("median_house_value", axis=1)
+housing = strat_train_set.drop(
+    "median_house_value", axis=1
+)  # drop labels for training set
 housing_labels = strat_train_set["median_house_value"].copy()
+
 
 imputer = SimpleImputer(strategy="median")
 
@@ -114,6 +118,7 @@ housing_prepared = housing_tr.join(
 
 lin_reg = LinearRegression()
 lin_reg.fit(housing_prepared, housing_labels)
+
 
 housing_predictions = lin_reg.predict(housing_prepared)
 lin_mse = mean_squared_error(housing_labels, housing_predictions)
