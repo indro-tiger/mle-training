@@ -1,0 +1,5 @@
+## Ignoring .pyc and csv file only
+
+*.pyc
+*.csv
+/.vscode
